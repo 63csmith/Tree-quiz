@@ -1,28 +1,40 @@
-let secondsEl = $("#seconds");
-let startBtn = $("#start-btn");
-let questionDiv = $("#questions");
-let nextBtn = $("#next")
-let scoreList = $("#score-list")
-let questions = [
-    {
-        name: "This is the first question",
-        choices: ['1. this is answer 1', '2. this is answer 2']
-    },
-    {
-        name: "This is the second question",
-        choices: ['1. this is answer 1 for question 2', '2. this is answer 2']
-    }
+let secondsEl = document.getElementById("seconds");
+let startBtn = document.getElementById("start-btn");
+let questionDiv = document.getElementById("questions");
+let nextBtn = document.getElementById("next")
+let scoreList = document.getElementById("score-list")
+var buttonA = document.getElementById("a");
+var buttonB = document.getElementById("b");
+var buttonC = document.getElementById("c");
+var buttonD = document.getElementById("d");
+let quizQuestions = [{
+    question: "Does a tree make a noise when it falls?",
+    choiceA: "As many as you want",
+    choiceB: "3",
+    choiceC: "1",
+    choiceD: "128",
+    correctAnswer: "c"},
+
 ];
 
-let currentIndex = 0;
+var finalQuestionIndex = quizQuestions.length;
+var currentQuestionIndex = 0;
+var timeLeft = 76;
+var timerInterval;
+var score = 0;
+var correct;
+
+questionDiv.style.visibility = "hidden"
+
 
 function startQuiz() {
-    startBtn.hide()
+    startBtn.style.visibility = "hidden"
+    questionDiv.style.visibility = "visible"
     timer = 3;
     score = 0;
     let gameTimer = setInterval(() => {
         timer--
-        secondsEl.text("Time Remaining: " + timer)
+        secondsEl.textContent = "Time Remaining: " + timer;
         
         if (timer === 0) {
             
@@ -34,14 +46,23 @@ function startQuiz() {
 }
 
 function getQuestions(){
-    questionDiv.attr("src", questions[currentIndex].url)
-}
+    //     if (currentQuestionIndex === finalQuestionIndex){
+    //     return showScore();
+    // } 
+    var currentQuestion = quizQuestions[currentQuestionIndex];
+    questionDiv.innerHTML = "<p>" + currentQuestion.question + "</p>";
+    buttonA.innerHTML = currentQuestion.choiceA;
+    buttonB.innerHTML = currentQuestion.choiceB;
+    buttonC.innerHTML = currentQuestion.choiceC;
+    buttonD.innerHTML = currentQuestion.choiceD;
+};
+
 
 
 function endGame() {
     console.log("game over")
-    secondsEl.text("Time Remaining: 0")
-    startBtn.show()
+    secondsEl.textContent = "Time Remaining: 0";
+    startBtn.style.visibility = "visible"
     var initials = prompt("Your score is: " + score + "\nPlease enter your Initials!")
     var currentScores = JSON.parse(localStorage.getItem('score')) || []
     var userObj = {
@@ -56,13 +77,13 @@ function endGame() {
 
 function renderScores() {
     var currentScores = JSON.parse(localStorage.getItem("score")) || []
-    scoreList.empty();
+    // scoreList.removeChild();
         for (var i = 0; i < currentScores.length; i++) {
             var scoreObj = currentScores[i];
-            var newLi = $("<li>", {
+            var newLi = document.createElement("li", {
                 class: "list-group-item"
             })
-            newLi.text(scoreObj.initials + '-----------' + scoreObj.score)
+            newLi.textContent = scoreObj.initials + '-----------' + scoreObj.score;
             
             scoreList.append(newLi)
             
@@ -70,7 +91,7 @@ function renderScores() {
     }
     
     //Event-Listener 
-    startBtn.on("click", function(){
+    startBtn.addEventListener("click", function(){
         startQuiz();
         getQuestions();
     })

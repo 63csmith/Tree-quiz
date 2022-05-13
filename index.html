@@ -11,12 +11,16 @@
     <header>
       <h1>Tree-Quiz</h1>
     </header>
-
     <p id="time">Time</p>
     <p id="seconds"></p>
-    <div id="questions"></div>
+    <div id="questions">
+      <p>Questions</p>
+      <button id="a" onclick="checkAnswer('a')">A</button>
+      <button id="b" onclick="checkAnswer('b')">B</button>
+      <button id="c" onclick="checkAnswer('c')">C</button>
+      <button id="d" onclick="checkAnswer('d')">D</button>
+    </div>
     <main>
-      <!-- <button id="next">Next</button> -->
       <section class="display-box">
         <button id="start-btn">Start Quiz</button>
       </section>
@@ -25,11 +29,6 @@
       <h3>High Scores</h3>
       <ul class="list-group list-group-flush" id="score-list"></ul>
     </section>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
     <script src="./Assets/script.js"></script>
   </body>
 </html>
