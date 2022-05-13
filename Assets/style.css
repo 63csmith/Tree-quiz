@@ -1,0 +1,32 @@
+body{
+    text-align: center;
+    background-image:url(./dave-ruck-OqaavL4MpJQ-unsplash.jpg);
+    background-color: rgb(43, 43, 43);
+    color: white;
+}
+
+.display-box{
+    /* border:solid white .3rem;  */
+    margin: 10rem;
+
+}
+h1{
+    font-size: 300%;
+    font-weight: 800;
+}
+
+
+
+#start-btn{
+    width: 14rem;
+    height: 4rem;
+    margin: 4rem;
+}
+
+#time{
+    display: none;
+}
+
+li{
+    list-style: none;
+}
