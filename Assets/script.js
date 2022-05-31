@@ -167,17 +167,19 @@ function writeHighScores() {
     clearInterval(timeInterval);
     scoresListElement.innerHTML = "";
     highScoresArray = JSON.parse(localStorage.getItem("high-scores")) ?? [];
+    console.log((localStorage.getItem("high-scores")))
     for (var i = 0; i < highScoresArray.length; i++) {
         var highScore = document.createElement("li");
-        highScore.titleContent = highScoresArray[i].initials + " - " + highScoresArray[i].score;
+        highScore.textContent = highScoresArray[i].initials + " - " + highScoresArray[i].score;
         scoresListElement.appendChild(highScore);
     }
 }
 
 // high-score function
-function updateHighScore(score, highScores) {
-    highScores.push(score);
-    // highScores.sort((a, b) => b.score - a.score);
+function updateHighScore(player) {
+    highScores = JSON.parse(localStorage.getItem("high-scores")) ?? [];
+    highScores.push(player);
+    highScores.sort((a, b) => b.score - a.score);
     localStorage.setItem("high-scores", JSON.stringify(highScores));
 }
 
@@ -196,8 +198,8 @@ submitButton.addEventListener("click", function () {
     } else {
         player.initials = initialsInputElement.value;
         initialsInputElement.value = "";
-        highScores = JSON.parse(localStorage.getItem("high-scores")) ?? [];
-        updateHighScore(player, highScores);
+        
+        updateHighScore(player);
         writeHighScores();
     }
 });
