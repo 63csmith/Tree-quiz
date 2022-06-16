@@ -1,15 +1,15 @@
 # Tree Quiz
 
-##Link to the quiz
+## Link to the quiz
+
 https://63csmith.github.io/Tree-quiz/
 
-##Link to the GitHub repo
+## Link to the GitHub repo
+
 https://github.com/63csmith/Tree-quiz.git
 
-##GitHub username 
-63csmith
-
 ## User Story
+
 As a user I want to take a timed quiz about trees and recieve a score at the end that I can save to local storage
 
 ## Acceptance Critetira
@@ -23,4 +23,5 @@ GIVEN I am taking a code quiz
 - WHEN the game is over, THEN I can save my initials and score
 
 ## Screenshot
-Screenshot 2022-06-15 214234.png
+
+![alt text](./Assets/images/Screenshot%202022-06-15%20214234.png)
